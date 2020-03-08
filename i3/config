@@ -2,17 +2,17 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
-set $mod Mod1
-
+set $mod Control
+set $sup mod4
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 1
-default_floating_border normal
-
+#default_border pixel 1
+#default_floating_border normal
+# border radius 2
 # Hide borders
-hide_edge_borders none
+#hide_edge_borders none
 
 # change borders
 bindsym $mod+u border none
@@ -36,7 +36,7 @@ bindsym $mod+q kill
 bindsym $mod+d exec --no-startup-id dmenu_recency
 
 # launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
+# bindsym $mod+z exec --no-startup-id morc_menu
 
 # change screen resolution, set wallpaper and start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -44,9 +44,9 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # start rofi (a program launcher)
 bindsym $mod+space exec rofi -show drun
 bindsym $mod+F11 exec rofi -show run
-
+# bindsym $mod+d exec --no-startup-id "rofi -show drun -font \\"DejaVu 9\\" -run-shell-command '{terminal} -e \\" {cmd}; read -n 1 -s\\"'"
 # rofi-bluetooth
-bindsym $mod+F10 exec --no-startup-id ~/.config/rofi-bluetooth/rofi-bluetooth
+# bindsym $mod+F10 exec --no-startup-id ~/.config/rofi-bluetooth/rofi-bluetooth
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
@@ -68,34 +68,35 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle # mute soun
 # bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
+bindsym $alt+b exec terminal -e 'bmenu'
 bindsym $mod+F2 exec chromium
 bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 bindsym $mod+F5 exec terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
+# bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
-bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+# bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
+# bindsym $mod+x --release exec --no-startup-id xkill
+
 
 # focus_follows_mouse no
 
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
-bindsym $mod+l focus up
+#bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+#bindsym $mod+Left focus left
+#bindsym $mod+Down focus down
+#bindsym $mod+Up focus up
+#bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+j move left
@@ -104,31 +105,31 @@ bindsym $mod+Shift+l move up
 bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Down move down
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Right move right
 
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
-bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+#bindsym $mod+b workspace back_and_forth
+#bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-bindsym $mod+h split h;exec notify-send 'tile horizontally'
-bindsym $mod+v split v;exec notify-send 'tile vertically'
+#bindsym $mod+ split h;exec notify-send 'tile horizontally'
+#bindsym $mod+ split v;exec notify-send 'tile vertically'
 bindsym $mod+Shift+q split toggle
 
 # toggle fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $sup+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+s layout stacking
+bindsym $sup+w layout tabbed
+bindsym $sup+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $sup+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $super+space focus mode_toggle
@@ -137,18 +138,18 @@ bindsym $super+space focus mode_toggle
 bindsym $mod+Shift+s sticky toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+# bindsym $mod+minus scratchpad show
 
 #navigate workspaces next / previous
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+Left workspace prev
+#bindsym $mod+Right workspace next
+#bindsym $mod+Left workspace prev
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
@@ -174,14 +175,14 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 
 # Move focused container to workspace
-bindsym $mod+Ctrl+1 move container to workspace $ws1
-bindsym $mod+Ctrl+2 move container to workspace $ws2
-bindsym $mod+Ctrl+3 move container to workspace $ws3
-bindsym $mod+Ctrl+4 move container to workspace $ws4
-bindsym $mod+Ctrl+5 move container to workspace $ws5
-bindsym $mod+Ctrl+6 move container to workspace $ws6
-bindsym $mod+Ctrl+7 move container to workspace $ws7
-bindsym $mod+Ctrl+8 move container to workspace $ws8
+#bindsym $mod+Ctrl+1 move container to workspace $ws1
+#bindsym $mod+Ctrl+2 move container to workspace $ws2
+#bindsym $mod+Ctrl+3 move container to workspace $ws3
+#bindsym $mod+Ctrl+4 move container to workspace $ws4
+#bindsym $mod+Ctrl+5 move container to workspace $ws5
+#bindsym $mod+Ctrl+6 move container to workspace $ws6
+#bindsym $mod+Ctrl+7 move container to workspace $ws7
+#bindsym $mod+Ctrl+8 move container to workspace $ws8
 
 # Move to workspace with focused container
 bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
@@ -200,6 +201,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
+for_window [class=".*"] border pixel 5
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
@@ -232,10 +234,10 @@ for_window [class="Xfburn"] floating enable
 for_window [urgent=latest] focus
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $sup+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $sup+Shift+r restart
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -258,7 +260,7 @@ mode "$mode_system" {
 }
 
 # Resize window (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
+bindsym $sup+r mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
         # Pressing left will shrink the window’s width.
@@ -361,16 +363,15 @@ set_from_resource $term_color15    color15
 #}
 
 # hide/unhide i3status bar
-bindsym $mod+m bar mode toggle
+# bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
+  client.focused          #80FF00 #80FF00 #80FF00 #80FF00
   client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
   client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
   client.placeholder      #000000 #0c0c0c #ffffff #000000 
-
   client.background       #2B2C2B
 
 #############################
