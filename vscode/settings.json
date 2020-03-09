@@ -1,0 +1,39 @@
+{
+  "window.zoomLevel": 1,
+    "workbench.iconTheme": "file-icons",
+    "workbench.colorCustomizations": {
+    "editorLineNumber.Foreground": "#4ec516"
+    },
+    "editor.fontFamily": "'Fira Code'",
+    "editor.fontLigatures": true,
+    "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "italic",
+          "foreground": "#ffda07",
+        }
+      }
+    ]
+  },
+  "editor.minimap.enabled": false,
+  "files.associations": {
+    "*.js": "javascriptreact"
+  },
+  "editor.lineNumbers": "relative",
+  "workbench.colorTheme": "Monokai Vibrant",
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.lineHeight": 0,
+  "editor.fontSize": 15,
+  "git.enableSmartCommit": true
+}
+
+
