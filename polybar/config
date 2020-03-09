@@ -1,84 +1,314 @@
-;============================================================;
-;							     ;
-;							     ;
-;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗   ;
-;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗  ;
-;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝  ;
-;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗  ;
-;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║  ;
-;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝  ;
-;							     ;
-;							     ;
-;   To learn more about how to configure Polybar 	     ;
-;   go to https://github.com/polybar/polybar		     ;
-;							     ;
-;   The README contains a lot of information		     ;
-;    							     ;
-;===========================================================;
+[section/base]
+include-file = ~/.config/polybar/constants
 
-[colors]
-background = #99000000
-foreground = #ffffff
+[bar/top]
+inherit = section/base
 
-primary = #aa0D47A1
-secondary = #e60053
-alert = #bd2c40
-
-shade1 = #0D47A1
-shade2 = #1565C0
-shade3 = #1976D2
-shade4 = #1E88E5
-shade5 = #2196F3
-shade6 = #42A5F5
-shade7 = #64B5F6
-shade8 = #90CAF9
-ashade8 = #2C2C2C
-
-[bar/topbar]
-locale = en_US.UTF-8
-bottom = false
 width = 100%
-height = 32
-radius = 1.0
-fixed-center = true
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = #AA111111
+foreground = #ccffffff
 
-line-size = 3
-line-color = #f00
+line-color = ${bar/bottom.background}
+line-size = 10
+tray-padding = 3
 
-border-size = 0
-border-color = #00000000
+border-bottom-size = 3
+border-bottom-color = #FF333333
 
-padding-left = 0
-padding-right = 0
+;tray-position = right
+;wm-restack = i3
+override-redirect = false
 
-module-margin-left = 1
-module-margin-right = 2
+spacing = 1
+padding-right = 3
+module-margin = 2
 
-font-0 = Hack:style=bold:pixelsize=11;1
-font-1 = FontAwesome5Free:style=Solid:size=11;2
-font-2 = FontAwesome5Free:style=Solid:size=11;2
-font-3 = FontAwesome:style=Regular:size=11;2
-font-4 = FontAwesome5Brands:style=Regular:size=11;2
+separator = |
 
-modules-left = i3 memory cpu temperature pulseaudio
-modules-center = xwindow
-modules-right = wlan bluetooth battery date
+font-0 = SourceCodePro:size=12;3
+font-1 = SourceCodePro:size=12;3
+font-2 = FuraMono Nerd Font Mono:size=12:antialias=false;3
+font-3 = FuraMono Nerd Font Mono:size=15:antialias=true;9
+font-4 = SourceCodePro:size=12;3
+font-5 = Material Icons:size=12:antialias=true;3
+font-6 = NotoEmoji Nerd Font Mono:size=12:antialias=true;3
 
-tray-position = right
-tray-padding = 5
+[bar/bottom]
+inherit = section/base
 
-wm-restack = i3
-cursor-click = pointer
-cursor-scroll = ns-resize
+bottom = true
+width = 100%
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:75:...%
-format-background = #0a0a0a
-format-padding = 5
+background = ${bar/top.background}
+foreground = ${bar/top.foreground}
+
+line-color = ${bar/top.background}
+line-size = 2
+
+
+border-top-size = ${bar/top.border-bottom-size}
+border-top-color = ${bar/top.border-bottom-color}
+
+spacing = 3
+padding-right = 4
+module-margin-left = 0
+module-margin-right = 6
+
+font-0 = NotoSans-Regular:size=6;0
+font-1 = unifont:size=6;-3
+font-2 = FontAwesome:size=10;-2
+font-3 = NotoSans-Regular:size=8;-1
+font-4 = SourceCodePro:size=10;-1
+font-5 = 5Free:size=8:antialias=false;0
+font-6 = mplus Nerd Font Mono:size=7:antialias=true;0
+
+;[module/backlight]
+;type = custom/script
+;exec = ~/.config/polybar/backlight.sh
+;scroll-up = light -A 5
+;scroll-down = light -U 5
+;interval = 0.05
+;label = %output%
+;format = " <label>"
+
+
+[module/battery1]
+type = internal/battery
+full-at = 98
+
+adapter=ADP1
+battery=BAT1
+
+format-charging =  <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+
+ramp-capacity-font=4
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = #ffa900
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+bar-capacity-format = %{+u}%{+o}%fill%%empty%%{-u}%{-o}
+bar-capacity-fill = █
+bar-capacity-fill-foreground = #ddffffff
+bar-capacity-fill-font = 4
+bar-capacity-empty = █
+bar-capacity-empty-font = 4
+bar-capacity-empty-foreground = #44ffffff
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-font = 4
+animation-charging-framerate = 750
+
+[module/battery2]
+type = internal/battery
+inherit=module/battery1
+
+adapter=ADP1
+battery=BAT2
+
+[module/cpu]
+type = internal/cpu
+interval = 0.25
+format = <label> <ramp-coreload>
+label = CPU %percentage%%
+
+ramp-coreload-0 = ▁
+ramp-coreload-0-font = 5
+ramp-coreload-0-foreground = #aaff77
+ramp-coreload-1 = ▂
+ramp-coreload-1-font = 5
+ramp-coreload-1-foreground = #aaff77
+ramp-coreload-2 = ▃
+ramp-coreload-2-font = 5
+ramp-coreload-2-foreground = #aaff77
+ramp-coreload-3 = ▄
+ramp-coreload-3-font = 5
+ramp-coreload-3-foreground = #aaff77
+ramp-coreload-4 = ▅
+ramp-coreload-4-font = 5
+ramp-coreload-4-foreground = #fba922
+ramp-coreload-5 = ▆
+ramp-coreload-5-font = 5
+ramp-coreload-5-foreground = #fba922
+ramp-coreload-6 = ▇
+ramp-coreload-6-font = 5
+ramp-coreload-6-foreground = #ff5555
+ramp-coreload-7 = █
+ramp-coreload-7-font = 5
+ramp-coreload-7-foreground = #ff5555
+
+[module/date]
+type = internal/date
+date =    %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+
+[module/memory]
+type = internal/memory
+format = <label> <bar-used>
+label = RAM %percentage_used%%
+
+bar-used-width = 10
+bar-used-foreground-0 = #aaff77
+bar-used-foreground-1 = #aaff77
+bar-used-foreground-2 = #fba922
+bar-used-foreground-3 = #ff5555
+bar-used-indicator = |
+bar-used-indicator-font = 6
+bar-used-indicator-foreground = #ff
+bar-used-fill = ─
+bar-used-fill-font = 6
+bar-used-empty = ─
+bar-used-empty-font = 6
+bar-used-empty-foreground = #444444
+
+[module/mpd]
+type = internal/mpd
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
+
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-random = 
+icon-repeat = 
+
+toggle-on-foreground =
+toggle-off-foreground = #55
+
+bar-progress-width = 45
+bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
+bar-progress-indicator = |
+bar-progress-indicator-foreground = #ff
+bar-progress-indicator-font = 3
+bar-progress-fill = ─
+bar-progress-fill-foreground = #bb
+bar-progress-fill-font = 3
+bar-progress-empty = ─
+bar-progress-empty-font = 3
+bar-progress-empty-foreground = #44
+
+[module/wireless-network]
+type = internal/network
+interface = wlo1
+interval = 3.0
+ping-interval = 10
+
+format-connected = WLAN: <ramp-signal> <label-connected>
+label-connected = "%essid% ↑%upspeed% ↓%downspeed%"
+upspeed = %upspeed%
+label-disconnected =    not connected
+label-disconnected-foreground = #66
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+
+animation-packetloss-0 = 
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 
+animation-packetloss-1-foreground = ${bar/top.foreground}
+animation-packetloss-framerate = 500
+
+[module/wired-network]
+type = internal/network
+interface = net0
+interval = 3.0
+
+label-connected =    %{T3}%local_ip%%{T-}
+label-disconnected-foreground = #66
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink =
+
+;Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+
+; Interval for volume increase/decrease (in percent points) (unreleased)
+; Default: 5
+interval = 5
+
+;Available tokens:
+;   %percentage% (default)
+label-volume = %percentage%%
+format-volume = <ramp-volume> <label-volume>
+
+; Available tokens:
+;   %percentage% (default)
+label-muted = 🔇
+label-muted-foreground = #66
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
+ramp-volumen-font = 3
+label-ramp-volume-font = 3
+
+; If defined, it will replace <ramp-volume> when
+; headphones are plugged in to `headphone_control_numid`
+; If undefined, <ramp-volume> will be used for both
+; Only applies if <ramp-volume> is used
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+[module/powermenu]
+type = custom/menu
+
+format-padding = 2
+
+label-open = 
+label-close = 
+
+menu-0-0 = Terminate WM
+menu-0-0-foreground = #fba922
+menu-0-0-exec = bspc quit -1
+menu-0-1 = Reboot
+menu-0-1-foreground = #fba922
+menu-0-1-exec = menu_open-1
+menu-0-2 = Power off
+menu-0-2-foreground = #fba922
+menu-0-2-exec = menu_open-2
+
+menu-1-0 = Cancel
+menu-1-0-foreground = #fba922
+menu-1-0-exec = menu_open-0
+menu-1-1 = Reboot
+menu-1-1-foreground = #fba922
+menu-1-1-exec = reboot
+
+menu-2-0 = Power off
+menu-2-0-foreground = #fba922
+menu-2-0-exec = poweroff
+menu-2-1 = Cancel
+menu-2-1-foreground = #fba922
+menu-2-1-exec = menu_open-0
+
+label-separator = "  "
+
+[module/clock]
+type = internal/date
+interval = 2
+date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+
+; vim:ft=dosini
 
 [module/i3]
 type = internal/i3
@@ -86,189 +316,37 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
 label-mode-padding = 2
 label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+#label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = #dc143c
-label-focused-underline= #dc143c
-label-focused-padding = 2
+label-focused-background = #444
+#label-focused-underline = ${module/bspwm.label-focused-underline}
+label-focused-padding = 3
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = 2
+label-unfocused-padding = 3
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
+#label-visible-background = ${self.label-focused-background}
+#label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = 3
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = #5f5f5f
+#label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = 2
 
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = " "
-format-prefix-foreground = #FFFFFF
-label = %percentage:2%%
-format-padding = 1
+; Separator in between workspaces
+label-separator = |
+label-separator-padding = 2
 
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = #FFFFFF
-label = %percentage_used%%
-format-padding = 1
+ws-icon-0 =1;〉_
 
-[module/wlan]
-type = internal/network
-interface = wlp2s0
-interval = 3.0
-
-format-connected = <ramp-signal> <label-connected>
-label-connected = %essid%
-;label-connected = "%{A1:networkmanager_dmenu &:} %essid%%{A}"
-
-;label-disconnected = "%{A1:networkmanager_dmenu &:}  Not Connected!%{A}"
-
-
-format-disconnected = 
-
-ramp-signal-0 = 
-ramp-signal-foreground = #FFFFFF
-format-connected-padding = 0
-
-[module/date]
-
-type = internal/date
-interval = 5
-
-date-alt =%A, %d.%B %Y
-time = %H:%M
-
-format-prefix = ""
-format-prefix-foreground = #FFFFFF
-format-background = #dc143c
-format-padding = 2
-
-label =  %date% %time%
-
-[module/battery]
-type = internal/battery
-battery = BAT0
-adapter = ADP1
-full-at = 98
-
-format-charging = <animation-charging> <label-charging>
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-padding = 1
-
-format-full-prefix = "  "
-format-full-prefix-foreground = #FFFFFF
-format-full-prefix-background = #dc143c
-
-format-charging-padding = 1
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
-animation-charging-foreground = #FFFFFF
-animation-charging-framerate = 1000
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-3 = 
-animation-discharging-4 = 
-animation-discharging-foreground = #FFFFFF
-animation-discharging-framerate = 1000
-
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
-
-format = <ramp> <label>
-format-warn = <ramp> <label-warn>
-
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-background = #dc143c
-label-warn-padding = 1
-
-ramp-0 = 
-ramp-1 = 
-ramp-foreground = #FFFFFF
-format-padding = 1
-
-[module/pulseaudio]
-type = internal/pulseaudio
-
-; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
-; Default: true
-use-ui-max = true
-
-; Interval for volume increase/decrease (in percent points)
-; Default: 5
-interval = 5
-
-; Available tags:
-;   <label-volume> (default)
-;   <ramp-volume>
-;   <bar-volume>
-format-volume = <ramp-volume> <label-volume>
-format-volume-foreground = #FFFFFF
-
-; Available tags:
-;   <label-muted> (default)
-;   <ramp-volume>
-;   <bar-volume>
-;format-muted = <label-muted>
-
-; Available tokens:
-;   %percentage% (default)
-;   %decibels% (unreleased)
-;label-volume = %percentage%%
-
-; Available tokens:
-;   %percentage% (default)
-;   %decibels% (unreleased)
-label-muted = "muted"
-label-muted-foreground = #FF0000
-
-; Only applies if <ramp-volume> is used
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-click-left = ~/.config/polybar/volume.sh mute
-
-[module/bluetooth]
+[module/network-traffic]
 type = custom/script
-exec = ~/.config/rofi-bluetooth/rofi-bluetooth --status
-interval = 1
-click-left = ~/.config/rofi-bluetooth/rofi-bluetooth &
-
-; ------------------------ END OF MODULES --------------------------------------------------
-
-
-screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
-;apseudo-transparency = true
-
-[global/wm]
-margin-top = 5
-margin-bottom = 5
-
-; vim:ft=dosini=
+exec = ~/.config/polybar/network-traffic.sh
+tail = true
