@@ -3,16 +3,16 @@ dpi=110
 
 [bar/top]
 modules-right = pulseaudio backlight wireless-network battery1 battery2 date
-modules-left = powermenu mpd
+modules-left = i3
 
-height = 48
+height = 30
 tray-maxsize = 30
 
 [bar/bottom]
-modules-left = i3
+modules-left = poweroff mpd
 modules-right = cpu memory
 
-height = 55
+height = 30
 
 [colors]
 background = #1b2b34
