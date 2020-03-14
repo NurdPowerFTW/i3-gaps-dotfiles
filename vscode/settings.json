@@ -12,7 +12,7 @@
         "scope": "comment",
         "settings": {
           "fontStyle": "italic",
-          "foreground": "#ffda07",
+          "foreground": "#ffda07"
         }
       }
     ]
@@ -32,8 +32,6 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.lineHeight": 0,
-  "editor.fontSize": 15,
+  "editor.fontSize": 13,
   "git.enableSmartCommit": true
 }
-
-
